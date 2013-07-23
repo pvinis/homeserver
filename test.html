@@ -1,0 +1,11 @@
+<h1>{{.Title}}</h1>
+
+<ul>
+{{range .Names}}
+	<li>{{.}}</li>
+{{end}}
+</ul>
+
+<form action="{{.Url}}">
+	<input type="submit" value="Refresh" />
+</form>
