@@ -6,7 +6,7 @@ import (
 	"os/exec"
 )
 
-func main() {
+func msdfain() {
 	names, err := exec.Command("transmission-remote", "-l").Output()
 
 	if err != nil {

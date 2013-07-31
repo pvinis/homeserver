@@ -3,6 +3,7 @@ package main
 import (
 	"html/template"
 	"net/http"
+	"net/url"
 )
 
 type LinksPage struct {
@@ -19,8 +20,12 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	t, _ := template.ParseFiles("home.html")
 	data := LinksPage{}
 	data.Title = "Home"
-	u1, _ := rtr.Get("test").URL()
-	u2, _ := rtr.Get("torrents").URL()
-	data.Links = []Link{Link{u1.String(), "test"}, Link{u2.String(), "torrents"}, Link{"3", "transmission"}}
+	routeNumber := len(routeNames)
+	urls := make([]*url.URL, routeNumber)
+	data.Links = make([]Link, routeNumber)
+	for i := 0; i < routeNumber; i++ {
+		urls[i], _ = rtr.Get(routeNames[i]).URL()
+		data.Links[i] = Link{urls[i].String(), routeNames[i]}
+	}
 	t.Execute(w, data)
 }

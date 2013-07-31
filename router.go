@@ -8,11 +8,13 @@ import (
 )
 
 var rtr = mux.NewRouter()
+var routeNames = []string{"home", "test", "torrents", "status"}
 
 func Init() {
 	rtr.HandleFunc("/", HomeHandler).Name("home")
 	rtr.HandleFunc("/test", TestHandler).Name("test")
 	rtr.HandleFunc("/torrents", TorrentsHandler).Name("torrents")
+	rtr.HandleFunc("/status", StatusHandler).Name("status")
 }
 
 type Page struct {
