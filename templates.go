@@ -1,5 +1,5 @@
 package main
 
-type BaseTemplate struct {
+type BaseTemplateData struct {
         Title string
 }

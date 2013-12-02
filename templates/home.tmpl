@@ -21,11 +21,16 @@
 
 <h1>{{.Title}}</h1>
 
+{{ if .ServerAlive }}
+<div class="circle" id="green"></div>
+Server running..
+{{ else }}
+<div class="circle" id="red"></div>
+Server down.
+<form action="/notify">
 
-<div class="circle" id="red"></div>asda
-
-<form action="{{.Url}}">
-
-<input type="submit" value="Refresh" />
+<input type="submit" value="Notify Paul" />
 
 </form> 
+{{ end }}
+
