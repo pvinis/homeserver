@@ -1,11 +1,20 @@
 package main
 
 import (
-	"net/http"
+        "net/http"
+		"fmt"
 )
 
 func main() {
-	Init()
-	http.Handle("/", rtr)
-	http.ListenAndServe(":8001", nil)
+        RegisterHandlers()
+        http.Handle("/", router)
+		err := http.ListenAndServe(":80", nil)
+		if err != nil {
+			err = http.ListenAndServe(":3000", nil)
+			if err != nil {
+				fmt.Println(err)//////logger
+			}
+		} else {
+			fmt.Println("Serving on port 80..")
+		}
 }
