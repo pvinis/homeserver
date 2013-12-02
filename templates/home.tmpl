@@ -1,4 +1,3 @@
-
 <style>
 .circle {
     border-radius: 50%;
@@ -15,22 +14,18 @@
     height: 20px;
     background: red;
 }
-
-
 </style>
 
 <h1>{{.Title}}</h1>
 
 {{ if .ServerAlive }}
-<div class="circle" id="green"></div>
-Server running..
+	<div class="circle" id="green"></div>
+	Server running..
 {{ else }}
-<div class="circle" id="red"></div>
-Server down.
-<form action="/notify">
-
-<input type="submit" value="Notify Paul" />
-
-</form> 
+	<div class="circle" id="red"></div>
+	Server down.
+	<form action="/notify">
+	<input type="submit" value="Notify Paul" />
+	</form> 
 {{ end }}
 

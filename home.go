@@ -1,9 +1,9 @@
 package main
 
 import (
+	"bitbucket.org/kisom/gopush/pushover"
 	"html/template"
 	"net/http"
-	"bitbucket.org/kisom/gopush/pushover"
 	"os/exec"
 	"regexp"
 )
@@ -29,7 +29,7 @@ func NotifyHandler(w http.ResponseWriter, r *http.Request) {
 
 func pingServer() bool {
 	re := regexp.MustCompile("(\\d+) received")
-	out, err := exec.Command("ping", "-c", "1", "192.168.2.153").Output()
+	out, err := exec.Command("ping", "-c", "1", "192.168.2.150").Output()
 	if err != nil {
 		/////log it	fmt.Println(err)
 	}
@@ -41,12 +41,11 @@ func pingServer() bool {
 }
 
 func sendNotification() bool {
-	identity := pushover.Authenticate("ajUCEgKvd9QmeMKFHBmvwMct1DYytx","iBzANa9RG4jhS3s9QK9MAGNruSoGSz")
+	identity := pushover.Authenticate("ajUCEgKvd9QmeMKFHBmvwMct1DYytx", "iBzANa9RG4jhS3s9QK9MAGNruSoGSz")
 	sent := pushover.Notify(identity, "turn on server")
 	if !sent {
-	///log
-	return false
+		///log
+		return false
 	}
-return true
+	return true
 }
-
