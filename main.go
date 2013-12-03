@@ -12,7 +12,7 @@ func main() {
 	if err != nil {
 		err = http.ListenAndServe(":3000", nil)
 		if err != nil {
-			fmt.Println(err) //////logger
+			 //////logger
 		}
 	} else {
 		fmt.Println("Serving on port 80..")
