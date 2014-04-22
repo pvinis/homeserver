@@ -8,15 +8,15 @@ import (
 	"regexp"
 )
 
-type HomeTestTemplateData struct {
+type TestTemplateData struct {
 	BaseTemplateData
 	ServerAlive bool
 }
 
-func HomeTestHandler(w http.ResponseWriter, r *http.Request) {
+func TestHandler(w http.ResponseWriter, r *http.Request) {
 	t, _ := template.ParseFiles("templates/home.tmpl")
 
-	data := HomeTestTemplateData{}
+	data := TestTemplateData{}
 	data.Title = "home"
 	data.ServerAlive = pingServer()
 	t.Execute(w, data)
